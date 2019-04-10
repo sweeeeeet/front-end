@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js的使用方式</title>
+			<!--js的使用方式有两种:内部方式<script></script>/
+				
+			外部方式:引入文件script标签(必须有标签体,有开始有结束的标签),连接src属性-->
+			<!--
+            	作者：offline
+            	时间：2019-04-09
+            	描述：javascript的注释:/**/
+            							//
+            	常用函数:
+            	1.(window.)alert("提示框")
+            	2.document.write("")
+            -->
+            
+            <script >
+            
+            /*
+             
+             * js是一种弱类型语言,
+             * 1)使用var定义变量,使用var也可以定义对象
+             * 2)在js中,可以重复定义变量
+             * java:Person p=new Person();
+             * js:var p=new Person();
+             * 
+             * */
+            
+           /* var a=10;
+            var a=20;
+            var b=3.14;
+            var c='s';
+            var d="23d";
+            document.write("b的值是"+b+",数据类型是"+typeof(b)+"</br>");
+            
+            document.write("a的值是"+a+",数据类型是"+typeof(a)+"</br>");
+            document.write("c的值是"+c+",数据类型是"+typeof(c)+"</br>");
+            document.write("c的值是"+d+",数据类型是"+typeof(d)+"转换后:"+parseInt(d));*/
+           
+           function checkMonth(){
+           	//1.获取inpubt标签对象
+           	var monthInput=document.getElementById("monthInput");
+           //2.通过当前标签对象获取里面的内容
+           //String 类型
+           mothinput=monthInput.value;
+           //3.使用流程控制语句判断
+           //当string类型和number类型进行比较时,会自动转换为number类型
+           if(mothinput==1||mothinput==3||mothinput==5||mothinput==7||mothinput==8||
+           	mothinput==10||mothinput==12){
+           		alert("该月份有31天");
+           	}
+           	else if(mothinput==4||mothinput==6||mothinput==9||mothinput==11){
+           		alert("该月份有30天");
+           	}
+           		else if(mothinput==2){
+           		alert("该月份有28天");
+           	}else{
+           		alert("没有该月份");
+           	}
+           }
+            
+            
+            </script>
+	</head>
+	<body>
+		请输入月份:<input type="text" name="monthInput" id="monthInput" />
+		<br />
+		<input type="button"  value="查询" onclick="checkMonth()" />
+	</body>
+</html>
