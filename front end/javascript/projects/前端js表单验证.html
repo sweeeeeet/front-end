@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		function checkUsername(){
+		//校验用户名
+//1.获取用户名内容
+var username=document.getElementById("username").value;
+var reg=/^[a-zA-Z0-9]{4,14}$/;
+//2.获取id="name_span"的标签对象
+var nameSpan=document.getElementById("name_span");
+if(reg.test(username)){
+	//成功:设置nameSpan的innerHTML属性
+	nameSpan.innerHTML="当前用户名可用".fontcolor("green");
+	return true;
+	
+}else{
+	nameSpan.innerHTML="当前用户名不可用".fontcolor("red");
+	return false;
+	
+}
+
+}
+function checkPwd(){
+	
+//1.获取用户名内容
+var pwd=document.getElementById("pwd").value;
+var reg=/^[a-zA-Z0-9]{4,14}$/;
+//2.获取id="name_span"的标签对象
+var pwdSpan=document.getElementById("pwd_span");
+if(reg.test(pwd)){
+	//成功:设置nameSpan的innerHTML属性
+	pwdSpan.innerHTML="当前密码可用".fontcolor("green");
+	return true;
+}else{
+	pwdSpan.innerHTML="当前密码不可用".fontcolor("red");
+	return false;
+}
+	
+}
+function checkRepwd(){
+	var pwd=document.getElementById("pwd").value;
+	var repwd=document.getElementById("repwd").value;
+	var repwdSpan=document.getElementById("repwd_span");
+	
+	if(pwd.valueOf(repwd)){
+		repwdSpan.innerHTML="两次输出密码一致".fontcolor("green");
+		return true;
+	}else{
+		repwdSpan.innerHTML="两次输出密码不一致".fontcolor("red");
+		return false;
+	}
+}
+		function checkEmail(){
+			//获取邮箱内容
+			var email=document.getElementById("email").value;
+    		//邮箱:数字或字母(可出现多次)@数字或字母(.cn/.com/...)
+			
+		var reg=/^[a-zA-Z0-9]+@[A-Za-z0-9]+(\.[a-z-A-Z]{2,3}){1,2}$/;
+		//获取id_span
+	var emailSpan=	document.getElementById("email_span");
+		if(reg.test(email)){
+			emailSpan.innerHTML="当前邮箱可用".fontcolor("green");
+			return true;
+			
+		}else{
+			emailSpan.innerHTML="当前邮箱不可用".fontcolor("red");
+			return false;
+		}
+		}
+		
+		
+		//校验全部表单,如果都通过,才能提交
+function checkAll(){
+	if(checkUsername()&&checkPwd()&&checkRepwd()&&checkEmail()){
+		return true;
+	}else{
+		return false;
+	}
+}
+	</script>
+	<body >
+		<!--
+        	作者：offline
+        	时间：2019-04-11
+        	描述：onsubmit:表单数据是否能提交:true 提交
+        									false 不能提交
+    		script定义正则的规则:
+    		用户名:4--14为数字或字母组成
+    		密码:6--16位数字或字母组成
+    		确认密码和密码一致
+    		邮箱:数字或字母(可出现多次)@数字或字母
+        -->
+		<form action="切换图片.html" method="post" onsubmit="return checkAll()">
+			
+			用户名:<input type="text" id="username" value="" onblur="checkUsername()"/><span id="name_span"></span>
+			<br />
+			密码:<input type="password" name="" id="pwd" value="" onblur="checkPwd()"/><span id="pwd_span"></span>
+			<br />
+			确认密码:<input type="password" name="" id="repwd" value="" onblur="checkRepwd()"/><span id="repwd_span"></span>
+			<br />
+			邮箱:<input type="text" name="" id="email" value="" onblur="checkEmail()"/><span id="email_span"></span>
+			<br />
+			<input type="submit" name="" id="" value="注册" />
+		</form>
+	</body>
+</html>
