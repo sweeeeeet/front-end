@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jquery的动画效果</title>
+			<!--引入jq的js库-->
+		<script type="text/javascript" src="../js/jquery-1.11.0.js">
+		</script>
+		<script type="text/javascript">
+			//隐藏动画
+			$(function(){
+				$("#bt2").click(function(){
+					$("#img1").hide(1000);//可以指定slow fast mormal 毫秒数
+				});
+			});
+			
+			//显示动画
+			$(function(){
+				$("#bt1").click(function(){
+					$("#img1").show();
+				});
+			});
+			
+			//show() hide()都是基本效果
+			
+			//滑动效果
+			$(function(){
+				$("#bt3").click(function(){
+					//由下向上滑动
+					
+					$("#img1").slideUp(1000);
+				});
+			});
+			
+			$(function(){
+				$("#bt4").click(function(){
+//由上向下的滑动
+					$("#img1").slideDown(1000);
+				});
+			});
+			
+			//通过透明度实现淡入淡出效果
+			$(function(){
+				$("#bt5").click(function(){
+					$("#img1").fadeIn(3000);
+				});
+			});
+			$(function(){
+				$("#bt6").click(function(){
+					$("#img1").fadeOut(2000);
+				});
+			});
+			
+			//自定义显示动画
+			//animate()
+			//opacity:透明度属性：0--1之间，0表示完全隐藏，1表示完全显示
+			$(function(){
+				$("#bt7").click(function(){
+					$("#img1").animate({width:"500px",opacity:"1"},5000);
+				});
+			});
+			$(function(){
+				$("#bt8").click(function(){
+					$("#img1").animate({width:"500px",opacity:"0"},5000);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input type="button" name="bt1" id="bt1" value="基本效果：显示" /><br />
+		<input type="button" name="bt2" id="bt2" value="基本效果：隐藏" /><br />
+		<input type="button" name="bt2" id="bt3" value="滑动效果：显示" /><br />
+		<input type="button" name="bt2" id="bt4" value="滑动效果：隐藏" /><br />
+		<input type="button" name="bt2" id="bt5" value="淡入效果：显示" /><br />
+		<input type="button" name="bt2" id="bt6" value="淡出效果：隐藏" /><br />
+		<input type="button" name="bt2" id="bt7" value="自定义效果：显示" /><br />
+		<input type="button" name="bt2" id="bt8" value="自定义效果：隐藏" /><br />
+		<br />
+		<img src="../img/4.ico"/ id="img1">
+	</body>
+	
+</html>
