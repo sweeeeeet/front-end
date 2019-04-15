@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 
+			 * 页面加载事件为了执行定时器*/
+			
+			var index=0;
+		function changeImg(){
+			var img=document.getElementById("img1");
+			var curindex=index%4+1;
+			img.src="../img/"+curindex+".ico";
+			index=index+1;
+		}
+		
+		function init(){
+				window.setInterval("changeImg()",3000);
+				
+			}
+		</script>
+	</head>
+	<body onload="init()">
+           <!--
+           	作者：offline
+           	时间：2019-04-11
+           	描述：页面加载事件
+           -->
+		<img src="../img/1.ico" id="img1"/>
+	</body>
+</html>
