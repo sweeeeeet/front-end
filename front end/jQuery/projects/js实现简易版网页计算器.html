@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+        
+        <style type="text/css">
+        	input{
+        		width: 448px;
+ 				height: 50px;
+ 				font-size: 30px;
+        	}
+        	
+        	tr{
+
+        		text-align: center;
+        	}
+        	/*设置单元格的内容宽度和高度以及字体大小*/
+        	td{
+        	width: 100px;
+        	height: 119px;
+        	font-size: 30px;
+        	}
+        	
+        	/*伪类选择器*/
+        	td:hover{
+        			background-color: lightcoral;
+        	/*	cursor:鼠标经过时变成小手状*/
+        		cursor: pointer;
+        	}
+        	
+
+        </style>
+	</head>
+	<body >
+<!--
+	作者：offline
+	时间：2019-04-14
+	描述：cellspacing:单元边沿和单元格之间的空间
+			cellpadding：单元格和内容之间空间
+	描述：禁用文本框的输入功能
+	扩展：增加系统时间
+			
+-->
+
+			<center><input type="text" name="" id="scanner" value="0" disabled="disabled"/></center>
+		<table border="1px" cellspacing="0" cellpadding="2" width="450px" height="550px" align="center">
+			<tr>
+				<td id="clear">C</td>
+				<td id="del">退格</td>
+				<td class="operator">%</td>
+				<td class="operator">/</td>
+			</tr>
+			<tr>
+				<td class="num">7</td>
+				<td class="num">8</td>
+				<td class="num">9</td>
+				<td class="operator">*</td>
+			</tr><tr>
+				<td class="num">4</td>
+				<td class="num">5</td>
+				<td class="num">6</td>
+				<td class="operator">-</td>
+			</tr><tr>
+				<td class="num">1</td>
+				<td class="num">2</td>
+				<td class="num">3</td>
+				<td class="operator">+</td>
+			</tr><tr>
+				<td colspan="2" class="num">0</td>
+				
+				<td class="num">.</td>
+				<td id="equal">=</td>
+			</tr>
+		</table>
+	<script type="text/javascript">
+		/*
+		 <!--
+        	作者：offline
+        	时间：2019-04-14
+        	描述：1.页面布局
+        			1）使用div+css  :大的div 嵌套两个子div（输入框和键盘）
+        			2）tableb布局5行4列的表格
+        		 2.逻辑处理：
+        		 	2.1 将数字键和小数点看成一类：class:"num"
+        		 	2.2将运算符看成一类：class="operator"
+        		 	2.3将清除键 退格键 ，= 显示框单独设置id属性
+        		 	2.4获取清除键 退格键 ，= 显示框所在的标签对象
+        		 	2.5获取数字键，并获取数字键所在对象，并设置点击事件
+        		 	2.6设置运算符和点击事件
+        -->*/
+       
+       //获取显示框
+       var show =document.getElementById("scanner");
+       //获取退格键
+		var del=document.getElementById("del");
+      //获取清除键
+      var clear= document.getElementById("clear"); 
+      //获取等号
+      var equal=document.getElementById("equal");
+      
+      //三个变量
+      var numValue1="";
+      var numValue2="";
+      var oper="";
+      
+      
+      //获取数字键
+      var nums=document.getElementsByClassName("num");
+      //遍历数字，分别设置点击事件
+      for(var i=0;i<nums.length;i=i+1){
+      	//将点击的数字显示到文本框
+      	nums[i].onclick=function(){
+      		//将nums[i]看成this：代表当前数字键对象的内存地址值
+      		
+		/*var text=this.innerText;
+		//改变input的value属性
+		show.value=text;
+	
+		bug 1.目前用户只能输入一位数字
+		 solution:定义三个变量，分别保存第一个数，第二个数 以及运算符
+		 * */
+		
+		// 将数字内容赋值给第一个数，然后将第一个数展示到文本框上
+
+		//bug2:小数点的特殊性只能出现一个
+		/*
+		 如果this.innerTxet==.
+		 处理小数点只能出现一个的逻辑
+		 否则
+		 整数运算
+		 * */
+		if(this.innerText=="."){
+			//判断小数点是否第一次出现？
+			
+			if(numValue1.indexOf(".")==0){
+				numValue1=0;
+			}
+			else{
+				numValue1+=this.innerText;
+			}
+		}else{
+
+		numValue1+=this.innerText;
+		//bug3：首位无效0
+		
+		show.value=numValue1*1;
+
+
+		//bug4:
+
+      	}
+
+      }
+      }
+      
+      //2.6获取运算符
+var operaters=document.getElementsByClassName("operator");
+
+for(var i=0;i<operaters.length;i++){
+	operaters[i].onclick=function(){
+		
+
+		//实现连续运算
+		//判断用户点击的是=还是运算符通过numValue2是否为空判断
+		if(numValue2==""){
+		//处理逻辑：将第二个数赋值给第一个数 然后将第一个数据清空，等待接收用户下一次的输入数据
+		numValue2=numValue1;
+		numValue1="";
+		oper=this.innerText;
+		}else{
+			//用户要么点击等号要么继续四则运算
+			resultFu();
+			oper=this.innerText;
+		}
+		
+		
+		
+		
+		
+	}
+}
+
+//清除键的操作：设置清除键的操作
+clear.onclick=function(){
+	numValue1="";
+	numValue2="";
+	oper="";
+	show.value="0";
+}
+
+//设置退格键
+del.onclick=function(){
+if(numValue1.length!=1){
+	//进行截取：从索引0--numVal1.length-1位置
+	numValue1=numValue1.substring(0,numValue1.length-1);
+	show.value=numValue1;
+}else{
+numValue1="";
+	numValue2="";
+	oper="";
+	show.value="0";
+	
+}
+}
+
+
+//给等号添加点击事件
+equal.onclick=function(){
+	
+		resultFu();
+	
+	
+}
+
+function resultFu(){
+	
+	var one=new Number(numValue2);
+	var two=new Number(numValue1);
+	var r=0;
+//根据运算符进行判断
+switch (oper){
+	case "+":
+	r=one+two;
+		break;
+		case "-":
+	r=one-two;
+		break;
+		case "*":
+	r=one*two;
+		break;
+		case "/":
+	//除数不能为0
+	if(two==0){
+		alert("除数不能为0！");
+		
+	}else{
+		r=one/two;
+	}
+	
+		break;
+	default:
+		break;
+}
+
+//将计算结果保留小数点的有效位
+
+
+numValue2=new Number(r).toFixed(6);
+//需要去掉无效0：用字符串值*1变为number类型
+
+numValue1="";
+show.value=numValue2;
+
+/*
+ 四则运算问题：
+ 用户输入两个数据目前是直接处理出结果 不能继续进行运算
+ 要实现继续运算：在运算符监听事件处理
+ 判断numvalue2值是否为空：
+ 		如果为""--》未被赋值
+ 		如果不为空，说明用户已经输入第二个数据
+ 		用户可能点击等号或继续点击运算符--->点击事件中处理
+ 		
+ * */
+}
+</script>
+	</body>
+	
+</html>
