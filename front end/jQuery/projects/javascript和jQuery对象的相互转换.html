@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js与jq的相互转换</title>
+			<!--引入jq的js库-->
+		<script type="text/javascript" src="../js/jquery-1.11.0.js">
+		</script>
+			
+		
+		
+		
+		<script type="text/javascript">
+			function init(){
+				alert("")
+			}
+			function jsChange(){
+			var div1=	document.getElementById("div1");
+			div1.innerHTML="使用js更改内容";
+			
+			//jquery方式：通过事件源函数click(fn(){})
+			//导入js库
+		
+			//1.页面载入
+			//2.确定事件
+			//3.选择所需要点击的元素
+			$(function(){
+				//单击点击事件---#btn2就是jq对象
+				$("#btn2").click(function(){
+					
+					$("#div1").html("使用jq方式更改内容");
+				});
+			});
+			}
+			
+		function transformStoQ(){
+				//js对象--》jq对象：在js对象前面添加$(js对象）
+				var div=document.getElementById("div1");
+				var $Div=$(div);
+				$Div.html("将js对象转换为jq对象修改div");
+		}
+		/*function transformQtoS(){
+			
+		}*/
+		
+		$(function(){
+			
+			$("#bt4").click(function(){
+
+			//get()会获取所有指定标签对象
+			var div=$("#div1");
+			var jsDiv=div.get(0);
+			jsDiv.innerHTML="将jq对象转换成JS对象更改div内容";
+			
+		});
+		});
+		</script>
+	</head>
+	<body>
+		<input type="button" name="" id="bt1" value="js更改" onclick="jsChange()" />
+		<br />
+		<input type="button" name="" id="btn2" value="jq更改" />
+		<br /><input type="button" name="" id="bt3" value="js对象转换为jq对象转换更改" onclick="transformStoQ()" />
+		<br /><input type="button" name="" id="bt4" value="jq对象转换为js对象转换更改"  />
+		<div id="div1">
+			这里的内容将会被更改
+		</div>
+	</body>
+</html>
