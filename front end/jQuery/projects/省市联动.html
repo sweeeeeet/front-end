@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<!--引入jq的js库-->
+		<script type="text/javascript" src="../js/jquery-1.11.0.js">
+		</script>
+		
+		<script type="text/javascript">
+			//使用jquery语言实现省市联动
+			//1.准备数据
+			var provinces=[
+			["惠州市","深圳市","广州市","东莞市"],
+			["西安市","宝鸡市","咸阳市","安康市"],
+			["大同市","太原市","运城市","吕梁市"]
+			];
+			
+			//2.加载页面载入事件
+			$(function(){
+				//选择省份
+				$("#province").change(function(){
+					
+					
+				//得到城市对象
+				var cities=provinces[this.value];
+				
+				//在遍历之前：清空city中的内容
+				$("#city").empty();
+				
+				//遍历城市
+				$(cities).each(function(i,n){
+				//选中城市所在的select
+				$("#city").append("<option>"+n+"</option>")
+				
+			})	
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<!--
+        	作者：offline
+        	时间：2019-04-12
+        	描述：省份列表
+        -->
+		<select name="province" id="province">
+			<option value="-1">请选择</option>
+			<option value="0">广东省</option>
+			<option value="1">陕西省</option>
+			<option value="2">山西省</option>
+			<option value="3">江苏省</option>
+		</select>
+		<select id="city">
+			<option value=""></option>
+		</select>
+	</body>
+</html>
