@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 * 广告开始隐藏
+			 * 经过三秒后弹出
+			 * 经过五秒后隐藏
+			 * */
+			
+			//显示广告
+			function hideAdv(){
+				var img=document.getElementById("img1");
+				img.style.display="none";
+			}
+			function showAdv(){
+				var img=document.getElementById("img1");
+				//显示
+				img.style.display="block";
+				//通过五秒隐藏图片
+				window.setTimeout("hideAdv()",5000);
+				
+			}
+			//隐藏广告
+			
+			
+			function init(){
+				window.setTimeout("showAdv()",3000);
+				
+			}
+		</script>
+	</head>
+	<body onload="init()">
+		<img  src="2382341_1422284059027_1024x768_960x540.jpeg" id="img1" />
+	</body>
+</html>
