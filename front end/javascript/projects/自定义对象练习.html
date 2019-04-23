@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<!--需求：设计工具类对象，在对象中添加添加方法search(array,target),
+			在array数组中查找指定元素target元素的位置
+			添加max(array)，获取最大值-->
+			<script type="text/javascript">
+				/*
+				 
+				 * 在Array对象中添加search，max方法，但不能用自定义对象完成；解决：{js原型，
+				 * 									在js原型中，给原型对象添加一个方法，然后在内置对象中创建
+				 * 									原型对象，这个方法就会自动添加到原型对象（Prototype）中}
+				 * //定义一个原型对象：
+				 * function Prototype(){
+				 * 	this.search=function()
+				 * }
+				 * 
+				 * //Array内置对象：
+				 * function Array（）{
+				 * 	var prototype=new Prototype();
+				 * //自动添加过来：
+				 * this.search=function(){
+				 * 	
+				 * 
+				 *		 }
+				 * }
+				 * 
+				 * js原型属性的作用：1.在js中所有的内置对象中，都存在原型属性：prototype
+				 * 2.在内置对象中调用原型属性，追加一个方法，这个方法会自动添加到内置对象中，
+				 * 3.给内置对象中追加方法
+				 * 格式：内置对象.prototype.方法名=function(参数){}
+				 * 
+				 * */
+			</script>
+	</head>
+	<body>
+	</body>
+</html>
