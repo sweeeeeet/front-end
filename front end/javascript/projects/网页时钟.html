@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body onload="genDate()">
+			<!--
+	作者：sweet
+	时间：2019-04-10
+	描述：步骤：
+	1.创建Date对象，拼接年月日时分秒
+	2.获取span标签对象
+	3.设置span标签对象的innerHTML对象
+	4.设置定时器
+-->
+		当前系统时间为：<span id="spanTip"></span>
+		
+	</body>
+	<script type="text/javascript">
+			//通过ID属性获取span函数对象
+			function genDate(){
+				//1.设置span标签的innerHTNL属性
+			var spanTip=document.getElementById("spanTip");
+				//HTML是从上往下依次执行的，当加载到第一步时，标签还未加载，因此不能回去到id
+			//设置span标签的innerHTML属性
+
+			//1
+			var date=new Date();
+			var dateStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日&nbsp;&nbsp"
+			+date.getHours()+"时"+date.getMinutes()+"分"+date.getSeconds()+"秒";
+			//2
+			var spanTip=document.getElementById("spanTip");
+			//3
+			spanTip.innerHTML=dateStr;
+			//4.定时器
+			setInterval("genDate()",1000);
+			
+			}
+		</script>
+</html>
+		
