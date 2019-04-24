@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script type="text/javascript">
+			var str="12";
+			//正则表达式含义:字母a到z,A到Z,0到9,定义两次
+			var reg=/[a-zA-Z0-9]{2}/;
+			
+			//如果用户输入的内容是否和当前规定的正则匹配:如果匹配,返回true,否则返回false
+			//由于js是弱类型语言,只要字符串内容和正则存在匹配内容就会返回true
+			//如果想让js正则规则严谨:加上边界匹配符号^$
+			
+			if(reg.test(str)){
+				alert("条件成立");
+				
+			}else{
+				alert("条件不成立");
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
