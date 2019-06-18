@@ -4,3 +4,8 @@ target/
 *.ico
 *.project
 
+
+*.class
+*.iml
+
+*.jar
