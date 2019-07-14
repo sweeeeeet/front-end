@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--配置类-->
+    <!--Circular类中属性通过构造方法的方式注入-->
+    <bean id="circular" class="com.sweeeeeet.github.ioc.apply.Circular">
+        <constructor-arg name="radius" value="20"/>
+    </bean>
+
+    <!--Rectangle类中属性通过setter方法的方式注入-->
+    <bean id="rectangle" class="com.sweeeeeet.github.ioc.apply.Rectangle">
+        <constructor-arg name="height" value="15"/>
+        <constructor-arg name="width" value="20"/>
+    </bean>
+
+
+    <!---->
+    <bean name="shapeCompute" class="com.sweeeeeet.github.ioc.apply.XMLShapeCompute">
+        <!--因为在XMLShapeCompute中，需要的是一个返回值，他是IShape接口的实现类对象，因此set注入采用ref-->
+        <property name="circular" ref="circular"/>
+        <property name="rectangle" ref="rectangle"/>
+    </bean>
+
+    <!--相当于创建对象-->
+    <bean id="car" class="com.sweeeeeet.github.ioc.practice.Car">
+        <!--通过构造方法为对象初始化-->
+        <constructor-arg name="name" value="自行车"/>
+        <constructor-arg name="brand" value="123"/>
+        <constructor-arg name="price" value="455.0"/>
+        <constructor-arg name="proAdd" value="北京"/>
+    </bean>
+
+    <!--创建对象-->
+    <bean id="person" class="com.sweeeeeet.github.ioc.practice.UserInfo">
+        <!--通过set方法为对象初始化-->
+        <property name="car" ref="car"/>
+        <property name="name" value="张三"/>
+        <property name="sex" value="女"/>
+    </bean>
+
+</beans>
