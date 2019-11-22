@@ -1,0 +1,11 @@
+.idea/
+out/
+target/
+*.ico
+*.project
+
+
+*.class
+*.iml
+
+*.jar
